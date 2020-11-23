@@ -12,6 +12,7 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var validator = require('express-validator');
 var app = express();
+require('dotenv').config()
 var MongoStore = require('connect-mongo')(session);
 
 
@@ -62,7 +63,8 @@ app.use(function (req, res, next) {
 app.use('/user', userRouter);
 app.use('/', indexRouter);
 
-// app.set('port', process.env.PORT || 3000);
+const port = process.env.PORT || 3000;
+app.listen(port);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
