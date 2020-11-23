@@ -63,8 +63,8 @@ app.use(function (req, res, next) {
 app.use('/user', userRouter);
 app.use('/', indexRouter);
 
-const port = process.env.PORT || 3000;
-app.listen(port);
+// const port = process.env.PORT || 3000;
+// app.listen(port);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
