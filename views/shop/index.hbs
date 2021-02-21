@@ -1,16 +1,35 @@
+<h1>{{title}}</h1>
+
 {{# each products }}
 <div class="row">
     {{# each this }}
-    <div class="col-lg-3 col-sm-12 col-md-4">
-        <div class="thumbnail">
-            <img src="{{ this.imagePath }}" alt="..." class="img-responsive">
-            <div class="caption">
-                <h3>{{this.title}}</h3>
-                <p class="description">{{ this.description }}</p>
-                <div class="clearfix">
-                    <div class="price pull-left">${{ this.price }}</div>
-                    <a href="/add-to-cart/{{this._id}}" class="btn btn-default pull-right btn-primary" role="button">Add
-                        to Cart</a>
+    <div class="clearfix thumbnail is-table-row">
+        <div class="col-md-4 col">
+            <div class="">
+                <div class="caption">
+                    <h3>{{ this.title }}</h3>
+                    <div class="clearfix">
+                        <img src="{{ this.imagePath }}" alt="..." class="img-responsive rounded mx-auto d-block">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="">
+                <div class="caption clearfix h-100">
+                    <p class="description">{{{this.description}}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="">
+                <div class="caption clearfix">
+                    <div class="price pull-left"><i class="fa fa-tag" aria-hidden="true"></i> {{ this.price }} $
+                    </div>
+                    <a href="/add-to-cart/{{this._id}}" class="btn btn-default pull-right" role="button"><i
+                            aria-hidden="true"></i> Add to cart</a>
                 </div>
             </div>
         </div>

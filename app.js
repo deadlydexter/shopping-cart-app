@@ -19,9 +19,10 @@ var MongoStore = require('connect-mongo')(session);
 require('./config/passport');
 
 // MOngoDB connection
-const URI = 'mongodb+srv://samy123:samy123@tmcluster-qrtg7.mongodb.net/shopping?retryWrites=true&w=majority';
+// process.env.MONGO_URI
+
 const OPTS = { useNewUrlParser: true, useUnifiedTopology: true };
-mongoose.connect(URI, OPTS, function (err) {
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, OPTS, function (err) {
   if (err) { return console.log(err); }
 });
 
