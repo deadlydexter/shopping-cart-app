@@ -12,17 +12,15 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var validator = require('express-validator');
 var app = express();
-require('dotenv').config()
+require('dotenv').config({ path: './.env' });
 var MongoStore = require('connect-mongo')(session);
 
 
 require('./config/passport');
 
 // MOngoDB connection
-// process.env.MONGO_URI
-
 const OPTS = { useNewUrlParser: true, useUnifiedTopology: true };
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, OPTS, function (err) {
+mongoose.connect(process.env.MONGO_URI, OPTS, function (err) {
   if (err) { return console.log(err); }
 });
 
