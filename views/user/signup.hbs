@@ -3,7 +3,7 @@
         <h1>Sign up</h1>
         {{#if hasErrors}}
         <div class="alert alert-danger">
-            {{#  each messages }}
+            {{# each messages }}
             <p>{{this}}</p>
             {{/each}}
         </div>
@@ -18,7 +18,7 @@
                 <input type="password" id="password" name="password" class="form-control">
             </div>
             <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-            <button type="submit" class="btn btn-primary">Sign Up</button>
+            <button type="submit" class="btn btn-primary" id="signup_btn">Sign Up</button>
         </form>
     </div>
 </div>

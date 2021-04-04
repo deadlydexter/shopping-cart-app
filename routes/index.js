@@ -86,20 +86,51 @@ router.post('/checkout', isLoggedIn, function (req, res, next) {
     return res.redirect('/shopping-cart');
   }
   var cart = new Cart(req.session.cart);
+  req.checkBody('name', 'Invalid Name').isLength({ min: 4 });
+  req.checkBody('address', 'Invalid Address - Minimum lenght is 4').isLength({ min: 4 });
+  req.checkBody('card_number', 'Card Number Must be integer').isInt();
+  req.checkBody('card_number', 'Card Number Min Length is 4').isLength({ min: 4 });
 
-  var order = new Order({
-    user: req.user,
-    cart: cart,
-    address: req.body.address,
-    name: req.body.name
-  });
-  order.save(function (err, result) {
-    req.flash('success', 'Successfully bought product!');
-    req.session.cart = null;
-    res.redirect('/');
-  });
+  var errors = req.validationErrors();
+  if (errors) {
+    var messages = [];
+    errors.forEach(function (error) {
+      messages.push(error.msg);
+    });
+    res.render('shop/checkout', { total: cart.totalPrice, messages: messages, noError: !messages });
+  } else {
+
+    var order = new Order({
+      user: req.user,
+      cart: cart,
+      address: req.body.address,
+      name: req.body.name
+    });
+    order.save(function (err, result) {
+      req.flash('success', 'Successfully bought product!');
+      req.session.cart = null;
+      res.redirect('/');
+    });
+  }
 });
 
+// For Testing Purposes ONLY
+// GET ALL ORDERS
+router.get('/test', async (req, res) => {
+  try {
+    const order = await Order.find();
+    console.log(order.length)
+    res.json(order);
+  } catch (err) { res.json({ message: err }) }
+});
+
+// DELETE AN ORDER from Profile
+router.delete('/test/:postId', async (req, res) => {
+  try {
+    const removedPost = await Order.deleteOne({ _id: req.params.postId });
+    res.json(removedPost);
+  } catch (err) { res.json({ message: err }) }
+});
 
 module.exports = router;
 
