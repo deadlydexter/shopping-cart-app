@@ -8,12 +8,16 @@
                 <strong>{{this.item.title}}</strong>
                 <span class="label label-success">{{this.price}}</span>
                 <div class="btn-group">
-                    <button class="btn btn-primary btn-xs dropdown-toggle" type="button" data-toggle="dropdown">Action
+                    <button class="btn btn-primary btn-xs dropdown-toggle" id="{{this.item.title}}_action_btn"
+                        type="button" data-toggle="dropdown">Action
                         <span class="caret"></span></button>
                     <ul class="dropdown-menu">
-                        <li><a href="/reduce/{{this.item._id}}">Reduce by 1</a></li>
-                        <li><a href="/increase/{{this.item._id}}">Increase by 1</a></li>
-                        <li><a href="/remove/{{this.item._id}}">Remove All</a></li>
+                        <li><a id="reduce_{{this.item.title}}_by_one" href="/reduce/{{this.item._id}}">Reduce by 1</a>
+                        </li>
+                        <li><a id="increase_{{this.item.title}}_by_one" href="/increase/{{this.item._id}}">Increase by
+                                1</a></li>
+                        <li><a id="remove_all_{{this.item.title}}_link" href="/remove/{{this.item._id}}">Remove All</a>
+                        </li>
                     </ul>
                 </div>
             </li>

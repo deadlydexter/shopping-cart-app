@@ -17,23 +17,23 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="/shopping-cart" id="shopping_cart_btn">
+                    <a href="/shopping-cart" id="shopping_cart_link">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping cart
                         <span class="badge">{{session.cart.totalQty}}</span>
                     </a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" id="user_management_btn" data-toggle="dropdown" role="button"
+                    <a href="#" class="dropdown-toggle" id="user_management_link" data-toggle="dropdown" role="button"
                         aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> User
                         Management <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         {{# if login}}
-                        <li><a href="/user/profile">User Account</a></li>
+                        <li><a id="user_account_link" href="/user/profile">User Account</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="/user/logout">Logout</a></li>
+                        <li><a id="logout_link" href="/user/logout">Logout</a></li>
                         {{ else }}
-                        <li><a href="/user/signup">Sign Up</a></li>
-                        <li><a href="/user/signin">Sign In</a></li>
+                        <li><a id="sign_up_link" href="/user/signup">Sign Up</a></li>
+                        <li><a id="sign_in_link" href="/user/signin">Sign In</a></li>
                         {{/if}}
 
                     </ul>
