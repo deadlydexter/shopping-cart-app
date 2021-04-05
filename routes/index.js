@@ -65,10 +65,10 @@ router.get('/increase/:id', function (req, res, next) {
 
 router.get('/shopping-cart', function (req, res, next) {
   if (!req.session.cart) {
-    return res.render('shop/shopping-cart', { products: null });
+    return res.render('shop/shopping-cart', { products: null, title: 'Buy Cars | Shopping Cart Page' });
   }
   var cart = new Cart(req.session.cart);
-  res.render('shop/shopping-cart', { products: cart.generateArray(), totalPrice: cart.totalPrice })
+  res.render('shop/shopping-cart', { products: cart.generateArray(), totalPrice: cart.totalPrice, title: 'Buy Cars | Shopping Cart Page' })
 })
 
 router.get('/checkout', isLoggedIn, function (req, res, next) {
@@ -77,7 +77,7 @@ router.get('/checkout', isLoggedIn, function (req, res, next) {
   }
   var cart = new Cart(req.session.cart);
   var errMsg = req.flash('error')[0];
-  res.render('shop/checkout', { total: cart.totalPrice, errMsg: errMsg, noError: !errMsg });
+  res.render('shop/checkout', { total: cart.totalPrice, errMsg: errMsg, noError: !errMsg, title: 'Buy Cars | Checkout Page' });
 });
 
 

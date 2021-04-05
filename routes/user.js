@@ -20,7 +20,7 @@ router.get('/profile', isLoggedIn, function (req, res, next) {
             cart = new Cart(order.cart);
             order.items = cart.generateArray();
         });
-        res.render('user/profile', { orders: orders });
+        res.render('user/profile', { orders: orders, title: 'Buy Cars | User Profile' });
     });
 });
 
@@ -36,7 +36,7 @@ router.get('/signup', function (req, res, next) {
     // error messages are stored in 'error'
     var messages = req.flash('error');
     // Pass token to View
-    res.render('user/signup', { csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0 });
+    res.render('user/signup', { csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0, title: 'Buy Cars | Sign Up Page' });
 });
 // Argument is the strategy created in passport.js file: 
 router.post('/signup', passport.authenticate('local.signup', {
@@ -51,7 +51,7 @@ router.post('/signup', passport.authenticate('local.signup', {
 
 router.get('/signin', function (req, res, next) {
     var messages = req.flash('error');
-    res.render('user/signin', { csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0 });
+    res.render('user/signin', { csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0, title: 'Buy Cars | Sign In Page' });
 });
 
 
