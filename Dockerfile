@@ -1,5 +1,5 @@
 
-FROM node as prod
+FROM node:17-slim as prod
 
 WORKDIR /app
 
